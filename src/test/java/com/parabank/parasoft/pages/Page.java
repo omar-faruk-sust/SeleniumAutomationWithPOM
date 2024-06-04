@@ -14,7 +14,7 @@ public abstract class Page {
     WebDriver driver;
     WebDriverWait wait;
 
-    public Page(WebDriver webDriver) {
+    public Page(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(Common.IMPLICIT_WAIT_TIME));
     }

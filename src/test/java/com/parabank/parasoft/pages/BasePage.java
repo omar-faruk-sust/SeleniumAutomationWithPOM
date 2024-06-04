@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BasePage extends Page {
 
-    BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         super(driver);
     }
 
