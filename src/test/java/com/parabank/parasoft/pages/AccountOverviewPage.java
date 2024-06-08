@@ -11,4 +11,11 @@ public class AccountOverviewPage extends BasePage {
     public boolean hasLogoutLink() {
         return !getWebElements(By.cssSelector("a[href='logout.htm']")).isEmpty();
     }
+
+    // Login --> fill username, pass, click (successful) --> AccountOverview -> OpenNewAccount
+    public OpenNewAccountPage clickOpenAccountLink() {
+        getWebElement(By.cssSelector("a[href='openaccount.htm']")).click();
+
+        return getInstance(OpenNewAccountPage.class);
+    }
 }

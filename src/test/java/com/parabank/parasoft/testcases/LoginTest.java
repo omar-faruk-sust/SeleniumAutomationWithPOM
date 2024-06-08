@@ -11,7 +11,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void doLoginWithUsernameShouldFail() {
         LoginPage loginPage = page.getInstance(LoginPage.class);
-        loginPage = loginPage.fillUsername("Assss").clickLoginLinkBtn();
+        loginPage = loginPage.fillUsername(getUsername()).clickLoginLinkBtn();
 
         Assert.assertTrue(loginPage.hasError());
     }
@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void doLoginWithPasswordShouldFail() {
         LoginPage loginPage = page.getInstance(LoginPage.class);
-        loginPage = loginPage.fillPassword("Assss").clickLoginLinkBtn();
+        loginPage = loginPage.fillPassword(getPassword()).clickLoginLinkBtn();
 
         Assert.assertTrue(loginPage.hasError());
     }
@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void doLoginShouldSucceed() {
         LoginPage loginPage = page.getInstance(LoginPage.class);
-        AccountOverviewPage overviewPage = loginPage.fillUsername("omar").fillPassword("omar").clickLoginBtn();
+        AccountOverviewPage overviewPage = loginPage.fillUsername(getUsername()).fillPassword(getPassword()).clickLoginBtn();
         Assert.assertTrue(overviewPage.hasLogoutLink());
     }
 
