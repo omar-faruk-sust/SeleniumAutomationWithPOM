@@ -33,4 +33,12 @@ public class AccountOverviewPage extends BasePage {
 
         return getInstance(BillPaymentPage.class);
     }
+
+    public UpdateProfilePage clickUpdateContactInfoLink() {
+        By selector = By.cssSelector("a[href='updateprofile.htm']");
+        waitForElement(selector);
+        getWebElement(selector).click();
+
+        return getInstance(UpdateProfilePage.class);
+    }
 }
