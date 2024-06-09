@@ -41,4 +41,12 @@ public class AccountOverviewPage extends BasePage {
 
         return getInstance(UpdateProfilePage.class);
     }
+
+    public LoanApplicationPage clickRequestLoanLink() {
+        By selector = By.cssSelector("a[href='requestloan.htm']");
+        waitForElement(selector);
+        getWebElement(selector).click();
+
+        return getInstance(LoanApplicationPage.class);
+    }
 }
