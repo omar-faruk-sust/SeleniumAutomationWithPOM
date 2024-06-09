@@ -25,4 +25,12 @@ public class AccountOverviewPage extends BasePage {
 
         return getInstance(TransferFundsPage.class);
     }
+
+    public BillPaymentPage clickBillPaymentLink() {
+        By selector = By.cssSelector("a[href='billpay.htm']");
+        waitForElement(selector);
+        getWebElement(selector).click();
+
+        return getInstance(BillPaymentPage.class);
+    }
 }
