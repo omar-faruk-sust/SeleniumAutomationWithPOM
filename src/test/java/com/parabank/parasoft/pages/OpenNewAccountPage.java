@@ -15,14 +15,17 @@ public class OpenNewAccountPage extends BasePage {
     // Finds and list your web elements(actions) of your page first and based on the behaviour you have to decide what will be the return type (same page/ different page)
 
     public OpenNewAccountPage selectAccountTypes(String accountType) {
-        WebElement selectType = getWebElement(By.xpath("//select[@id='type']"));
+        By selector = By.xpath("//select[@id='type']");
+        WebElement selectType = getWebElement(selector);
         new Select(selectType).selectByVisibleText(accountType);
 
         return this;
     }
 
-    public OpenNewAccountPage accountNumber(int index) {
-       new Select(getWebElement(By.xpath("//select[@id='fromAccountId']"))).selectByIndex(index);
+    public OpenNewAccountPage selectAccountNumber(int index) {
+        By accountSelector = By.xpath("//select[@id='fromAccountId']");
+        waitForElement(accountSelector);
+        new Select(getWebElement(accountSelector)).selectByIndex(index);
 
         return this;
     }

@@ -18,4 +18,11 @@ public class AccountOverviewPage extends BasePage {
 
         return getInstance(OpenNewAccountPage.class);
     }
+
+    // Login --> fill username, pass, click (successful) --> AccountOverview -> TransferFundsPage
+    public TransferFundsPage clickTransferFundLink() {
+        getWebElement(By.cssSelector("a[href='transfer.htm']")).click();
+
+        return getInstance(TransferFundsPage.class);
+    }
 }

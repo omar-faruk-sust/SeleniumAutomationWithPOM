@@ -3,6 +3,7 @@ package com.parabank.parasoft.testcases;
 import com.parabank.parasoft.pages.BasePage;
 import com.parabank.parasoft.pages.Page;
 import com.parabank.parasoft.util.Common;
+import com.thedeanda.lorem.LoremIpsum;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,10 +21,13 @@ import java.util.Properties;
 public class BaseTest {
     WebDriver driver;
     Page page;
-
+    LoremIpsum dataFaker;
     private Properties properties;
 
     public BaseTest() {
+
+        dataFaker = LoremIpsum.getInstance();
+
         try {
             properties = new Properties();
             // System.getProperty("user.dir") will give you the project root path

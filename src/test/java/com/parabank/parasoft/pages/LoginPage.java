@@ -1,6 +1,9 @@
 package com.parabank.parasoft.pages;
 
-import lombok.extern.java.Log;
+
+import com.parabank.parasoft.util.Common;
+import com.parabank.parasoft.util.SSNGenerator;
+import com.thedeanda.lorem.LoremIpsum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -66,6 +69,25 @@ public class LoginPage extends BasePage {
         return fillUsername(username)
                 .fillPassword(password)
                 .clickLoginBtn();
+    }
+
+    public AccountOverviewPage doLoginViaRegistration()  {
+        LoremIpsum dataFaker = LoremIpsum.getInstance();
+
+        return getInstance(LoginPage.class)
+                .clickRegistrationLink()
+                .fillFirstname(dataFaker.getFirstName())
+                .fillLastname(dataFaker.getLastName())
+                .fillAddress(dataFaker.getTitle(5))
+                .fillCity(dataFaker.getCity())
+                .fillState(dataFaker.getStateFull())
+                .fillZipCode((dataFaker.getZipCode()))
+                .fillPhoneNumber(dataFaker.getPhone())
+                .fillSsn(SSNGenerator.generateRandomSSN())
+                .fillUsername(Common.USERNAME)
+                .fillPassword(Common.PASSWORD)
+                .fillConfirmPassword(Common.PASSWORD)
+                .clickRegisterBtn();
     }
 
 }
