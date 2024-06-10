@@ -12,6 +12,14 @@ public class AccountOverviewPage extends BasePage {
         return !getWebElements(By.cssSelector("a[href='logout.htm']")).isEmpty();
     }
 
+    public AccountDetailsPage clickAccountLink() {
+        By selector = By.xpath("//table[@id='accountTable']/tbody/tr[1]/td[1]/a");
+        waitForElement(selector);
+        getWebElement(selector).click();
+
+        return getInstance(AccountDetailsPage.class);
+    }
+
     // Login --> fill username, pass, click (successful) --> AccountOverview -> OpenNewAccount
     public OpenNewAccountPage clickOpenAccountLink() {
         getWebElement(By.cssSelector("a[href='openaccount.htm']")).click();
