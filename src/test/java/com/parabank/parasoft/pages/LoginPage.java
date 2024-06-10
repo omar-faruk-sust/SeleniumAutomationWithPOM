@@ -10,7 +10,7 @@ public class LoginPage extends BasePage {
     }
 
     /**
-     * After fillup the username we stay at the login page so return page LoginPage
+     * After fill-up the username we stay at the login page so return page LoginPage
      * @param username
      */
     public LoginPage fillUsername(String username) {
@@ -53,6 +53,19 @@ public class LoginPage extends BasePage {
 
     public boolean hasError() {
         return getWebElements(By.className("error")).size() > 0;
+    }
+
+    /**
+     * This is a common method is needed for every single page because we need to do successful login
+     * To access other pages
+     * @param username
+     * @param password
+     * @return
+     */
+    public AccountOverviewPage doLogin(String username, String password) {
+        return fillUsername(username)
+                .fillPassword(password)
+                .clickLoginBtn();
     }
 
 }
