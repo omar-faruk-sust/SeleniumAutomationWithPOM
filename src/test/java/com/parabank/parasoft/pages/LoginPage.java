@@ -90,4 +90,8 @@ public class LoginPage extends BasePage {
                 .clickRegisterBtn();
     }
 
+    public boolean isLogout() {
+        return !getWebElements(By.xpath("//h2[contains(text(),'Customer Login')]")).isEmpty();
+    }
+
 }

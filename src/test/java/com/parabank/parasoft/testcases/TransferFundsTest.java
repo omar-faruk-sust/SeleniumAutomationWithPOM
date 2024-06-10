@@ -36,17 +36,4 @@ public class TransferFundsTest extends BaseTest {
 
         Assert.assertTrue(transferFundsPage.hasError());
     }
-
-    private AccountOverviewPage loginAndGetAccountOverviewPage() {
-        LoginPage loginPage = page.getInstance(LoginPage.class);
-        Assert.assertEquals(loginPage.getPageTitle(), Common.LOGIN_TITLE);
-
-        AccountOverviewPage accountOverviewPage = loginPage.doLogin(getUsername(), getPassword());
-        // This site create issue sometimes with login that's why we are doing like this to avoid this error
-        if(!accountOverviewPage.hasLogoutLink()) {
-            loginPage.doLoginViaRegistration();
-        }
-        return accountOverviewPage;
-    }
-
 }
