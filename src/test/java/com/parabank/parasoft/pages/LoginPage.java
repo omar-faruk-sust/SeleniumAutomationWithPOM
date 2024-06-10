@@ -1,6 +1,9 @@
 package com.parabank.parasoft.pages;
 
-import lombok.extern.java.Log;
+
+import com.parabank.parasoft.util.Common;
+import com.parabank.parasoft.util.SSNGenerator;
+import com.thedeanda.lorem.LoremIpsum;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -10,7 +13,7 @@ public class LoginPage extends BasePage {
     }
 
     /**
-     * After fillup the username we stay at the login page so return page LoginPage
+     * After fill-up the username we stay at the login page so return page LoginPage
      * @param username
      */
     public LoginPage fillUsername(String username) {
@@ -53,6 +56,38 @@ public class LoginPage extends BasePage {
 
     public boolean hasError() {
         return getWebElements(By.className("error")).size() > 0;
+    }
+
+    /**
+     * This is a common method is needed for every single page because we need to do successful login
+     * To access other pages
+     * @param username
+     * @param password
+     * @return
+     */
+    public AccountOverviewPage doLogin(String username, String password) {
+        return fillUsername(username)
+                .fillPassword(password)
+                .clickLoginBtn();
+    }
+
+    public AccountOverviewPage doLoginViaRegistration()  {
+        LoremIpsum dataFaker = LoremIpsum.getInstance();
+
+        return getInstance(LoginPage.class)
+                .clickRegistrationLink()
+                .fillFirstname(dataFaker.getFirstName())
+                .fillLastname(dataFaker.getLastName())
+                .fillAddress(dataFaker.getTitle(5))
+                .fillCity(dataFaker.getCity())
+                .fillState(dataFaker.getStateFull())
+                .fillZipCode((dataFaker.getZipCode()))
+                .fillPhoneNumber(dataFaker.getPhone())
+                .fillSsn(SSNGenerator.generateRandomSSN())
+                .fillUsername(Common.USERNAME)
+                .fillPassword(Common.PASSWORD)
+                .fillConfirmPassword(Common.PASSWORD)
+                .clickRegisterBtn();
     }
 
 }
