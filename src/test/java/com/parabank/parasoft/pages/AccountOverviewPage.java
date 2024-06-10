@@ -49,4 +49,12 @@ public class AccountOverviewPage extends BasePage {
 
         return getInstance(LoanApplicationPage.class);
     }
+
+    public LoginPage clickLogoutLink() {
+        By selector = By.cssSelector("a[href='logout.htm']");
+        waitForElement(selector);
+        getWebElement(selector).click();
+
+        return getInstance(LoginPage.class);
+    }
 }
