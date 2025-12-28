@@ -16,7 +16,4 @@ public class AccountOpenedPage extends BasePage {
         getWebElement(By.xpath(("//a[@id='newAccountId']"))).click();
         return getInstance(AccountDetailsPage.class);
     }
-
-
-
 }
