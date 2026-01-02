@@ -1,6 +1,8 @@
 package com.parabank.parasoft.testcases;
 
+import com.parabank.parasoft.pages.AccountOverviewPage;
 import com.parabank.parasoft.pages.BasePage;
+import com.parabank.parasoft.pages.LoginPage;
 import com.parabank.parasoft.pages.Page;
 import com.parabank.parasoft.util.Common;
 import com.thedeanda.lorem.LoremIpsum;
@@ -9,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -97,5 +100,17 @@ public class BaseTest {
 
     public String getPassword() {
         return properties.getProperty("password");
+    }
+
+    protected AccountOverviewPage loginAndGetAccountOverviewPage() {
+        LoginPage loginPage = page.getInstance(LoginPage.class);
+        Assert.assertEquals(loginPage.getPageTitle(), Common.LOGIN_TITLE);
+
+        AccountOverviewPage accountOverviewPage = loginPage.doLogin(getUsername(), getPassword());
+        // This site create issue sometimes with login that's why we are doing like this to avoid this error
+        if(!accountOverviewPage.hasLogoutLink()) {
+            loginPage.doLoginViaRegistration();
+        }
+        return accountOverviewPage;
     }
 }
